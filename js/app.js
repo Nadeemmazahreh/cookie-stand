@@ -49,6 +49,18 @@ for (let i = 0; i < time.length; i++) {
     liElementSeattle.textContent = time[i] + ": " +  seattle.cookie[i] + ' Cookies'
 }
 
+for (let i = 0; i < seattle.cookie.length; i++) {
+    seattle.cookie[i] = parseFloat(seattle.cookie[i]);
+    
+}
+
+let Totalsum = seattle.cookie.reduce(function(a, b){
+    return a + b;
+}, 1);
+let liElementSeattle = document.createElement('li')
+ulElementSeattle.appendChild(liElementSeattle)
+liElementSeattle.textContent = 'Total: ' + Totalsum + ' Cookies'
+
 let tokyo = {
     location: 'Tokyo',
     min: 3,
@@ -88,6 +100,18 @@ for (let i = 0; i < time.length; i++) {
     liElementTokyo.textContent = time[i] + ": " +  tokyo.cookie[i] + ' Cookies'
 }
 
+for (let i = 0; i < tokyo.cookie.length; i++) {
+    tokyo.cookie[i] = parseFloat(tokyo.cookie[i]);
+    
+}
+
+let Totalsum2 = tokyo.cookie.reduce(function(a, b){
+    return a + b;
+}, 1);
+let liElementTokyo = document.createElement('li')
+ulElementTokyo.appendChild(liElementTokyo)
+liElementTokyo.textContent = 'Total: ' + Totalsum + ' Cookies'
+
 let dubai = {
     location: 'Dubai',
     min: 11,
@@ -126,6 +150,17 @@ for (let i = 0; i < time.length; i++) {
 
     liElementDubai.textContent = time[i] + ": " +  dubai.cookie[i] + ' Cookies'
 }
+for (let i = 0; i < dubai.cookie.length; i++) {
+    dubai.cookie[i] = parseFloat(dubai.cookie[i]);
+    
+}
+
+let Totalsum3 = dubai.cookie.reduce(function(a, b){
+    return a + b;
+}, 1);
+let liElementDubai = document.createElement('li')
+ulElementDubai.appendChild(liElementDubai)
+liElementDubai.textContent = 'Total: ' + Totalsum + ' Cookies'
 
 
 let paris = {
@@ -167,6 +202,18 @@ for (let i = 0; i < time.length; i++) {
     liElementParis.textContent = time[i] + ": " +  paris.cookie[i] + ' Cookies'
 }
 
+for (let i = 0; i < paris.cookie.length; i++) {
+    paris.cookie[i] = parseFloat(paris.cookie[i]);
+    
+}
+
+let Totalsum4 = paris.cookie.reduce(function(a, b){
+    return a + b;
+}, 1);
+let liElementParis = document.createElement('li')
+ulElementParis.appendChild(liElementParis)
+liElementParis.textContent = 'Total: ' + Totalsum + ' Cookies'
+
 
 let lima = {
     location: 'Lima',
@@ -204,6 +251,18 @@ for (let i = 0; i < time.length; i++) {
 
     liElementLima.textContent = time[i] + ": " +  lima.cookie[i] + ' Cookies'
 }
+
+for (let i = 0; i < lima.cookie.length; i++) {
+    lima.cookie[i] = parseFloat(lima.cookie[i]);
+    
+}
+
+let Totalsum5 = lima.cookie.reduce(function(a, b){
+    return a + b;
+}, 1);
+let liElementLima = document.createElement('li')
+ulElementLima.appendChild(liElementLima)
+liElementLima.textContent = 'Total: ' + Totalsum + ' Cookies'
 
 
 
