@@ -110,7 +110,7 @@ let Totalsum2 = tokyo.cookie.reduce(function(a, b){
 }, 1);
 let liElementTokyo = document.createElement('li')
 ulElementTokyo.appendChild(liElementTokyo)
-liElementTokyo.textContent = 'Total: ' + Totalsum + ' Cookies'
+liElementTokyo.textContent = 'Total: ' + Totalsum2 + ' Cookies'
 
 let dubai = {
     location: 'Dubai',
@@ -160,7 +160,7 @@ let Totalsum3 = dubai.cookie.reduce(function(a, b){
 }, 1);
 let liElementDubai = document.createElement('li')
 ulElementDubai.appendChild(liElementDubai)
-liElementDubai.textContent = 'Total: ' + Totalsum + ' Cookies'
+liElementDubai.textContent = 'Total: ' + Totalsum3 + ' Cookies'
 
 
 let paris = {
@@ -212,7 +212,7 @@ let Totalsum4 = paris.cookie.reduce(function(a, b){
 }, 1);
 let liElementParis = document.createElement('li')
 ulElementParis.appendChild(liElementParis)
-liElementParis.textContent = 'Total: ' + Totalsum + ' Cookies'
+liElementParis.textContent = 'Total: ' + Totalsum4 + ' Cookies'
 
 
 let lima = {
@@ -262,7 +262,7 @@ let Totalsum5 = lima.cookie.reduce(function(a, b){
 }, 1);
 let liElementLima = document.createElement('li')
 ulElementLima.appendChild(liElementLima)
-liElementLima.textContent = 'Total: ' + Totalsum + ' Cookies'
+liElementLima.textContent = 'Total: ' + Totalsum5 + ' Cookies'
 
 
 
