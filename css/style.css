@@ -8,6 +8,10 @@ body {
     font-family: Architects Daughter;
 }
 
+#contactinfo {
+    font-weight: bold;
+}
+
 header h1 {
     color: rgb(16, 156, 63);
 }
