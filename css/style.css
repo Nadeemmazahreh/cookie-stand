@@ -2,3 +2,27 @@ table, tr, td, th {
     border: 2px solid black;
     text-align: center;
 }
+
+body {
+    background-color: bisque;
+    font-family: Architects Daughter;
+}
+
+#contactinfo {
+    font-weight: bold;
+}
+
+header h1 {
+    color: rgb(16, 156, 63);
+}
+
+footer a {
+    text-decoration: none;
+    color: rgb(16, 156, 63);
+    font-size: 30px;
+}
+
+footer {
+    padding-top: 50px;
+}
+
