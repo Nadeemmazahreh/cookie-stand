@@ -1,6 +1,6 @@
 'use strict';
 
-let time = ['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm']
+let time = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm']
 
 function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -8,7 +8,7 @@ function randomNumber(min, max) {
 
 let shops = []
 
-function Shops(location,min,max,avg,){
+function Shops(location, min, max, avg,) {
     this.location = location;
     this.min = min;
     this.max = max;
@@ -20,119 +20,147 @@ function Shops(location,min,max,avg,){
     shops.push(this);
 }
 
-Shops.prototype.getNumberOfCustomers = function() {
+Shops.prototype.getNumberOfCustomers = function () {
     for (let i = 0; i < time.length; i++) {
-        let num = randomNumber(this.min,this.max)
-        this.customers.push(Math.round(num))}
+        let num = randomNumber(this.min, this.max)
+        this.customers.push(Math.round(num))
+    }
 }
 
-Shops.prototype.getNumberOfCookies = function(){
+Shops.prototype.getNumberOfCookies = function () {
     for (let i = 0; i < time.length; i++) {
-        this.cookies.push(Math.round(this.customers[i]*this.avg))
-        this.totalsum += this.cookies[i]}
-}
-
-let seattle = new Shops('Seattle',23,65,6.3)
-seattle.getNumberOfCustomers()
-seattle.getNumberOfCookies()
-let tokyo = new Shops('Tokyo',3,24,1.4)
-tokyo.getNumberOfCustomers()
-tokyo.getNumberOfCookies()
-let dubai = new Shops('Dubai',11,38,3.7)
-dubai.getNumberOfCustomers()
-dubai.getNumberOfCookies()
-let paris = new Shops('Paris',20,38,2.3)
-paris.getNumberOfCustomers()
-paris.getNumberOfCookies()
-let lima = new Shops('Lima',2,16,4.6)
-lima.getNumberOfCustomers()
-lima.getNumberOfCookies()
-
-let hourlytotalsum = []
-for (let i = 0; i < time.length; i++) {
-    let sum = 0
-    for (let j = 0; j < shops.length; j++) {
-        sum += shops[j].cookies[i]   
-    } 
-    hourlytotalsum[i] = sum 
-}
-
-let totalsum = 0
-for (let i = 0; i < hourlytotalsum.length; i++) {
-    totalsum += hourlytotalsum[i];
+        this.cookies.push(Math.round(this.customers[i] * this.avg))
+        this.totalsum += this.cookies[i]
+    }
 }
 
 let parent = document.getElementById('Container');
-let table=document.createElement('table');
+let table = document.createElement('table');
 parent.appendChild(table);
 
-
-Shops.prototype.renderHeader = function(){
-    let headingRow=document.createElement('tr');
+function renderHeader() {
+    let headingRow = document.createElement('tr');
     table.appendChild(headingRow);
-    let thElement=document.createElement('th');
+    let thElement = document.createElement('th');
     headingRow.appendChild(thElement);
     thElement.textContent = '';
 
     for (let i = 0; i < time.length; i++) {
-    // creating th
-        let thElement=document.createElement('th');
-    // append to the row
+        // creating th
+        let thElement = document.createElement('th');
+        // append to the row
         headingRow.appendChild(thElement);
-    // give text content
-        thElement.textContent = time[i];}
+        // give text content
+        thElement.textContent = time[i];
+    }
 
-    let thElementTotal=document.createElement('th');
+    let thElementTotal = document.createElement('th');
     headingRow.appendChild(thElementTotal);
     thElementTotal.textContent = 'Daily Location Total';
 }
 
-seattle.renderHeader()
 
-function renderBody(){
-    console.log(shops)
-    for (let i = 0; i < shops.length; i++) {  
-        let bodyRow=document.createElement('tr');
-        table.appendChild(bodyRow);
-        let thElement=document.createElement('td')
-        bodyRow.appendChild(thElement);
-        thElement.textContent = shops[i].location
-        for (let j = 0; j < time.length; j++) {
+Shops.prototype.renderBody = function () {
+    let bodyRow = document.createElement('tr');
+    table.appendChild(bodyRow);
+    let thElement = document.createElement('td')
+    bodyRow.appendChild(thElement);
+    thElement.textContent = this.location
+    for (let j = 0; j < time.length; j++) {
         // creating th
-            let thElement=document.createElement('td');
+        let thElement = document.createElement('td');
         // append to the row
-            bodyRow.appendChild(thElement);
+        bodyRow.appendChild(thElement);
         // give text content
-            thElement.textContent = shops[i].cookies[j];}
-        let thElementTotalsum=document.createElement('td')
-        bodyRow.appendChild(thElementTotalsum);
-        thElementTotalsum.textContent = shops[i].totalsum
+        thElement.textContent = this.cookies[j];
     }
+    let thElementTotalsum = document.createElement('td')
+    bodyRow.appendChild(thElementTotalsum);
+    thElementTotalsum.textContent = this.totalsum
 }
 
-renderBody()
+let seattle = new Shops('Seattle', 23, 65, 6.3)
+let tokyo = new Shops('Tokyo', 3, 24, 1.4)
+let dubai = new Shops('Dubai', 11, 38, 3.7)
+let paris = new Shops('Paris', 20, 38, 2.3)
+let lima = new Shops('Lima', 2, 16, 4.6)
 
-console.log(hourlytotalsum);
-function renderFooter(){
-    let footerRow=document.createElement('tr');
+let shopsForm = document.getElementById('shopsForm');
+shopsForm.addEventListener('submit', submitter);
+
+function submitter(event) {
+    event.preventDefault();
+
+    let location = event.target.location.value
+    let min = event.target.min.value
+    let max = event.target.max.value
+    let avg = event.target.avg.value
+    
+    min = parseInt(min)
+    max = parseInt(max)
+    avg = parseInt(avg)
+    
+    let container = document.getElementById('Container');
+    let table2 = table
+    container.textContent = '';
+    table.textContent = '';
+    
+    let addedShop = new Shops(location, min, max, avg)
+    console.log(container)
+    container.appendChild(table)
+
+    renderHeader()
+
+    for (let i = 0; i < shops.length; i++) {
+        shops[i].getNumberOfCustomers()
+        shops[i].getNumberOfCookies()
+        shops[i].renderBody()
+    }
+    renderFooter()
+    
+}
+renderHeader()
+for (let i = 0; i < shops.length; i++) {
+    shops[i].getNumberOfCustomers()
+    shops[i].getNumberOfCookies()
+    shops[i].renderBody()
+}
+
+function renderFooter() {
+    let footerRow = document.createElement('tr');
     table.appendChild(footerRow);
-    let thElement=document.createElement('th');
+    let thElement = document.createElement('th');
     footerRow.appendChild(thElement);
     thElement.textContent = 'Totals';
 
-    for (let i = 0; i < hourlytotalsum.length; i++) {
-    // creating th
-        let thElement=document.createElement('th');
-    // append to the row
-        footerRow.appendChild(thElement);
-    // give text content
-        thElement.textContent = hourlytotalsum[i];}
+    let hourlytotalsum = []
+    for (let i = 0; i < time.length; i++) {
+        let sum = 0
+        for (let j = 0; j < shops.length; j++) {
+            sum += shops[j].cookies[i]
+        }
+        hourlytotalsum[i] = sum
+    }
 
-    let thElementTotal=document.createElement('th');
+
+    let totalsum = 0
+    for (let i = 0; i < hourlytotalsum.length; i++) {
+        totalsum += hourlytotalsum[i];
+    }
+
+    for (let i = 0; i < hourlytotalsum.length; i++) {
+        // creating th
+        let thElement = document.createElement('th');
+        // append to the row
+        footerRow.appendChild(thElement);
+        // give text content
+        thElement.textContent = hourlytotalsum[i];
+    }
+
+    let thElementTotal = document.createElement('th');
     footerRow.appendChild(thElementTotal);
     thElementTotal.textContent = totalsum;
 }
-
 renderFooter()
 
 
@@ -183,7 +211,7 @@ renderFooter()
 
 // for (let i = 0; i < seattle.cookie.length; i++) {
 //     seattle.cookie[i] = parseFloat(seattle.cookie[i]);
-    
+
 // }
 
 // let Totalsum = seattle.cookie.reduce(function(a, b){
@@ -234,7 +262,7 @@ renderFooter()
 
 // for (let i = 0; i < tokyo.cookie.length; i++) {
 //     tokyo.cookie[i] = parseFloat(tokyo.cookie[i]);
-    
+
 // }
 
 // let Totalsum2 = tokyo.cookie.reduce(function(a, b){
@@ -284,7 +312,7 @@ renderFooter()
 // }
 // for (let i = 0; i < dubai.cookie.length; i++) {
 //     dubai.cookie[i] = parseFloat(dubai.cookie[i]);
-    
+
 // }
 
 // let Totalsum3 = dubai.cookie.reduce(function(a, b){
@@ -336,7 +364,7 @@ renderFooter()
 
 // for (let i = 0; i < paris.cookie.length; i++) {
 //     paris.cookie[i] = parseFloat(paris.cookie[i]);
-    
+
 // }
 
 // let Totalsum4 = paris.cookie.reduce(function(a, b){
@@ -386,7 +414,7 @@ renderFooter()
 
 // for (let i = 0; i < lima.cookie.length; i++) {
 //     lima.cookie[i] = parseFloat(lima.cookie[i]);
-    
+
 // }
 
 // let Totalsum5 = lima.cookie.reduce(function(a, b){
